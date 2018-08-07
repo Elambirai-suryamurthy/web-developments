@@ -1,23 +1,17 @@
+ 
 <?php
 $servername = "localhost";
 $username = "root";
 $password = "";
-$dbname="myTask";
-// Create connection
-$conn = new mysqli($servername, $username, $password);
 
-// Check connection
-
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
-else{
-     echo "Connected successfully"; 
-    if(mysqli_select_db($conn,$dbname)){
-      echo "Data selected";
+try {
+    $conn_pdo = new PDO("mysql:host=$servername;dbname=myTask", $username, $password);
+    // set the PDO error mode to exception
+    $conn_pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    echo "Connected successfully"; 
     }
-else{
-    echo "Database not selected";
-}
-}
+catch(PDOException $e)
+    {
+    echo "Connection failed: " . $e->getMessage();
+    }
 ?>
