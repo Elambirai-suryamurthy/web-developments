@@ -1,3 +1,40 @@
+
+<?php
+include("config.php");
+try {
+    $firstname = $_POST['firstname'];
+    $email = $_POST['email'];
+    $password=$_POST['password'];
+    $encrypted_password= hash('sha256', $password);
+
+// $hash_password=md5($password);(another method of encripting)
+    $query = $conn->prepare("SELECT email FROM form WHERE email=?");
+    $query->execute(array($email));
+   
+    
+  if($query->rowCount() > 0){
+
+    echo "Email is already exist";
+}
+else {
+    // prepare sql and bind parameters
+    $stmt = $conn->prepare("INSERT INTO `form` (`firstname`, `email`, `password`) 
+    VALUES (?,?,?)");
+    // insert a row
+    $stmt->execute(array($firstname,$email,$encrypted_password));
+    echo "New records created successfully";
+
+}
+    
+    }
+catch(PDOException $e)
+    {
+    echo "Error: " . $e->getMessage();
+    }
+
+?>
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -37,7 +74,7 @@
         <center>
             <h2 class="text-success"> Sign up</h2>
         </center> <br>
-        <form action="php/formg.php" method="post" name="form" class="bg-light pure-form" onsubmit="return validation()">
+        <form action="index.php" method="post" name="form" class="bg-light pure-form" onsubmit="return validation()">
             <div class="form-group">
 
 
