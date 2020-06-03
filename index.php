@@ -54,6 +54,7 @@ catch(PDOException $e)
             background-image: url("code3.jpg");
             background-repeat: no-repeat;
             background-size: cover;
+            
         }
         
         .box {
@@ -70,7 +71,7 @@ catch(PDOException $e)
         }
     </style>
 </head>
-
+			
 <body>
 
     <div class="container box">
@@ -92,18 +93,18 @@ catch(PDOException $e)
             <div class="form-group">
 
                 <input type="password" class="form-control" id="password" size="15" placeholder="Password" maxlength="20" onkeyup="return passwordChanged();" name="password" onkeyup="CheckPasswordStrength(this.value)" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                    required>
+                    required><br><input type="checkbox" onclick="myFunction()"><label style="color:gray;font-weight:1px;">Show Password</label>
                 <span id="pwd1" class="text-danger font-weight-bold"></span>
             </div>
-            <br>
+            
             <div class="form-group">
 
-                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password" required>
+                <input type="password" class="form-control" id="confirm_password" placeholder="Confirm password" name="confirm_password" required autofill="off">
                 <span id="cpwd1" class="text-danger font-weight-bold"></span>
             </div><br>
 
             <button type="submit" class="btn btn-success pure-button pure-button-primary" name="submit">Submit</button><br>
-            <a href="login.php" style="position: absolute;left: 150px;top:405px;">already have account?</a>
+            <a href="login.php" style="position: absolute;left: 150px;top:405px;">already have account?</a><br>
         </form>
     </div>
     <script>
@@ -130,6 +131,14 @@ catch(PDOException $e)
 
         password.onchange = validatePassword;
         confirm_password.onkeyup = validatePassword;
+        function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
     </script>
 
     </form>

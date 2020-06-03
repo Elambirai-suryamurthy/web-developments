@@ -32,7 +32,7 @@ else
        $encrypted_password= hash('sha256', $password);
 
        //selecting all values(row) which matches the below query
-       $query = $conn->prepare("SELECT email FROM form WHERE email=? AND password=?");
+       $query = $conn->prepare("SELECT emailf FROM form WHERE email=? AND password=?");
 
        $query->execute(array($emailid,$encrypted_password));
 
@@ -122,9 +122,9 @@ else
                     </div><br>
                     <div class="form-group">
                         <input type="password" placeholder="Password" class="form-control" id="password" size="15" maxlength="20" onkeyup="return passwordChanged();" name="password" onkeyup="CheckPasswordStrength(this.value)" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters"
-                            required>
+                            required><br><input type="checkbox" onclick="myFunction()"><label style="color:gray;font-weight:1px;">Show Password</label>
                         <span id="pwd1" class="text-danger font-weight-bold"></span>
-                    </div><br><br>
+                    </div>
                     <button type="submit" class="btn btn-success pure-button pure-button-primary" name="submit">Submit</button><br><br><br>
                     <p class="bg-light"style="color:gray;">Don't have an Account ?&nbsp;&nbsp;<a href="index.php">Sign up.</a> </p></div>
                    
@@ -143,6 +143,14 @@ else
                 return (false);
             }
         }
+        function myFunction() {
+    var x = document.getElementById("password");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
     </script>
 </body>
 

@@ -1,9 +1,12 @@
 <?php
+// mysqli_connect("localhost","root","","image");
+// mysqli_select_db("image");
+
 
  $servername = "localhost";
  $username = "root";
  $password = "";
- $dbname="myTask";
+ $dbname="image";
  // Create connection
  $conn = new mysqli($servername, $username, $password);
  
